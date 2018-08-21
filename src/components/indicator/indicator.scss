@@ -1,0 +1,28 @@
+.indicator {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: $app-font;
+
+  .rotate {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    color: black;
+  }
+
+  .rotateData {
+    position: relative;
+    font-size: 140px;
+
+    &::after {
+      content: ' °';
+      position: absolute;
+      right: 7%;
+      top: 10%;
+      transform: translateX(100%);
+      font-size: 30px;
+    }
+  }
+}

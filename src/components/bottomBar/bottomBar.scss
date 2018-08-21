@@ -1,0 +1,48 @@
+.bottomBar {
+  width: 100%;
+  min-height: 54px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  background-color: black;
+  color: white;
+  font-family: $app-font;
+
+  .iosInstallButton {
+    margin-left: 15px;
+    padding: 10px * 1.1 11px * 1.1 8px * 1.1 11px * 1.1;
+    height: auto;
+    border-radius: 50%;
+    background-color: rgb(28, 255, 191);
+    display: none;
+
+    @at-root body.safari & {
+      display: block;
+    }
+
+    @media all and (display-mode: standalone) {
+      display: none !important;
+    }
+
+    img {
+      width: 12px;
+      height: auto;
+      fill: black;
+    }
+  }
+
+  .aboutButton {
+    margin-left: auto;
+    padding: 10px * 1.1 11px * 1.1 8px * 1.1 11px * 1.1;
+    height: auto;
+    border-radius: 50%;
+    background-color: white;
+
+    img {
+      width: 12px;
+      height: auto;
+      fill: black;
+    }
+  }
+}

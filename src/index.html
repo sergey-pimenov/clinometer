@@ -51,68 +51,14 @@
 </head>
 <body>
   <div class="initScreen">
-    <div class="indicator">
-  <div class="rotate">
-    <div class="rotateData">0</div>
-  </div>
-</div>
+    {% include "indicator.html" %}
 
-    <footer class="bottomBar">
-  <div class="details">
-    <div class="detailsRotate">0</div>
+    {% include "bottomBar.html" %}
   </div>
 
-  <button class="aboutButton">
-    <img src="static/about.svg">
-  </button>
+  {% include "about.html" %}
 
-  <button class="iosInstallButton">
-    <img src="static/install.svg">
-  </button>
-</footer>
-  </div>
-
-  <div class="about">
-  <div class="scrollWrapper">
-    <div class="aboutContent">
-      <div class="titleAndDesc">
-        <h1 class="title"> Phone clinometer </h1>
-
-        <p class="description">
-          App for measurement of inclination
-        </p>
-      </div>
-
-      <ul class="info">
-        <li class="author">
-          Made with
-          <img class="heartIcon" src="static/love.svg"> by Sergey Pimenov
-        </li>
-
-        <li class="offline">
-          <img class="offlineIcon" src="static/offline.svg"> App work offline
-        </li>
-
-        <li>
-          <a class="sourceCode" href="#">
-            <img class="githubIcon" src="static/github.svg"> Source code
-          </a>
-        </li>
-      </ul>
-    </div>
-
-    <button class="closeButton">
-      Close
-    </button>
-  </div>
-</div>
-
-  <div class="iosMessage">
-  <div class="iosInstruction">
-    <button class="close"></button>
-    Tap <img class="iosActionsIcon" src="static/iosActions.svg"> and then tap to <img class="addToHome" src="static/addToHome.svg">
-  </div>
-</div>
+  {% include "iosMessage.html" %}
 
   <script src="builded_assets/scripts/index.js"> </script>
 </body>

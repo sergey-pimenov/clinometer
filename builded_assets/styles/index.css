@@ -1,0 +1,244 @@
+@charset "UTF-8";
+@font-face {
+  font-family: 'Roboto Mono';
+  src: url("../../static/robotomono-regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal; }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: transparent;
+  box-shadow: none;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  color: inherit;
+  list-style: none; }
+
+html,
+body {
+  width: 100%;
+  height: 100%; }
+
+.initScreen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s ease-out; }
+  body.showInstruction .initScreen {
+    opacity: 0.2;
+    filter: blur(5px) grayscale(1);
+    pointer-events: none; }
+
+.indicator {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: "Roboto Mono", monospace; }
+  .indicator .rotate {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    color: black; }
+  .indicator .rotateData {
+    position: relative;
+    font-size: 140px; }
+    .indicator .rotateData::after {
+      content: ' °';
+      position: absolute;
+      right: 7%;
+      top: 10%;
+      transform: translateX(100%);
+      font-size: 30px; }
+
+.bottomBar {
+  width: 100%;
+  min-height: 54px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  background-color: black;
+  color: white;
+  font-family: "Roboto Mono", monospace; }
+  .bottomBar .iosInstallButton {
+    margin-left: 15px;
+    padding: 11px 12.1px 8.8px 12.1px;
+    height: auto;
+    border-radius: 50%;
+    background-color: #1cffbf;
+    display: none; }
+    body.safari .bottomBar .iosInstallButton {
+      display: block; }
+    @media all and (display-mode: standalone) {
+      .bottomBar .iosInstallButton {
+        display: none !important; } }
+    .bottomBar .iosInstallButton img {
+      width: 12px;
+      height: auto;
+      fill: black; }
+  .bottomBar .aboutButton {
+    margin-left: auto;
+    padding: 11px 12.1px 8.8px 12.1px;
+    height: auto;
+    border-radius: 50%;
+    background-color: white; }
+    .bottomBar .aboutButton img {
+      width: 12px;
+      height: auto;
+      fill: black; }
+
+.about {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 1;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial;
+  background-color: white;
+  line-height: 1.4;
+  display: none; }
+  .about.open {
+    display: block; }
+  .about .closeButton {
+    width: 100%;
+    min-height: 54px;
+    margin-top: auto;
+    background-color: black;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: white; }
+  .about .scrollWrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column; }
+  .about .aboutContent {
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around; }
+  .about .titleAndDesc {
+    text-align: center; }
+  .about .title {
+    font-size: 28px; }
+  .about .description {
+    margin-top: 5px;
+    font-size: 14px; }
+  .about .info {
+    font-size: 14px;
+    text-align: center; }
+  .about li,
+  .about .sourceCode {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px; }
+  .about .offlineIcon {
+    width: 20px;
+    height: auto;
+    margin-right: 7px; }
+  .about .githubIcon {
+    width: 18px;
+    height: auto;
+    margin-right: 7px; }
+  .about .heartIcon {
+    width: 18px;
+    margin: 0 7px;
+    animation: heartAnim 0.3s cubic-bezier(0.26, 0.68, 0.65, 1.65) infinite alternate; }
+
+@keyframes heartAnim {
+  100% {
+    transform: scale(0.9); } }
+
+.iosMessage {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 3;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial;
+  transition: all 0.2s ease-out; }
+  body.showInstruction .iosMessage {
+    opacity: 1;
+    pointer-events: auto; }
+  .iosMessage.showInstruction .instructionWrapper {
+    opacity: 1;
+    pointer-events: auto; }
+  .iosMessage .iosInstruction {
+    margin: auto 0 20px 0;
+    height: 62px;
+    padding: 0 23px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    background-color: white;
+    border: 3px black solid;
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: 600; }
+    .iosMessage .iosInstruction::after {
+      content: '';
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      left: calc(50% - 10px);
+      bottom: -22px;
+      background: url(../../static/downArrow.svg) no-repeat center top;
+      background-size: 100% auto;
+      z-index: 1;
+      animation: arrowAnim 0.4s infinite alternate; }
+
+@keyframes arrowAnim {
+  100% {
+    transform: translateY(-2px); } }
+  .iosMessage .close {
+    width: 27px;
+    height: 27px;
+    position: absolute;
+    right: -35px;
+    top: -32px; }
+    .iosMessage .close::before {
+      content: '';
+      width: 20px;
+      height: 2px;
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      background-color: black;
+      transform: rotateZ(45deg); }
+    .iosMessage .close::after {
+      content: '';
+      width: 20px;
+      height: 2px;
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      background-color: black;
+      transform: rotateZ(-45deg); }
+  .iosMessage .iosActionsIcon {
+    width: 19px;
+    margin: 0 10px;
+    position: relative;
+    top: -3px; }
+  .iosMessage .addToHome {
+    width: 25px;
+    margin-left: 10px; }
