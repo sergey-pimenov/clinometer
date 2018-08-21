@@ -3,6 +3,7 @@ import detectPlatform from './utils/scripts/detectPlatform';
 
 
 // Components
+import notSupported from './components/notSupported/notSupported';
 import indicator from './components/indicator/indicator';
 import about from './components/about/about';
 import bottomBar from './components/bottomBar/bottomBar';
@@ -12,6 +13,7 @@ import iosMessage from './components/iosMessage/iosMessage';
 detectPlatform();
 
 
+notSupported.init();
 indicator.init();
 bottomBar.init();
 about.init();

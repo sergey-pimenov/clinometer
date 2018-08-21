@@ -28,6 +28,11 @@ $content-font: -apple-system,
   text-decoration: none;
   color: inherit;
   list-style: none;
+  font-family: inherit;
+}
+
+body {
+  font-family: $app-font;
 }
 
 html,
