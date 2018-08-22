@@ -7,17 +7,42 @@
   font-size: 16px;
   background-color: black;
   color: white;
+  overflow: hidden;
+
+  .aboutButton {
+    width: 37px;
+    height: 37px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    border-radius: 50%;
+    background-color: white;
+    
+    @at-root body:not(.safari) & {
+      transform: translateX(calc(37px + 15px));
+    }
+
+    img {
+      width: 12px;
+      height: auto;
+      fill: black;
+    }
+  }
 
   .installButton {
+    width: 37px;
+    height: 37px;
+    padding-top: 2px;
     margin-left: 15px;
-    padding: 10px * 1.1 11px * 1.1 8px * 1.1 11px * 1.1;
-    height: auto;
+    justify-content: center;
+    align-items: center;
     border-radius: 50%;
     background-color: rgb(28, 255, 191);
-    display: none;
 
-    @at-root body.safari & {
-      display: block;
+    @at-root body:not(.safari) & {
+      transform: translateX(calc(37px + 15px));
+      opacity: 0;
     }
 
     @media all and (display-mode: standalone) {
@@ -29,19 +54,47 @@
       height: auto;
       fill: black;
     }
+
   }
 
-  .aboutButton {
-    margin-left: auto;
-    padding: 10px * 1.1 11px * 1.1 8px * 1.1 11px * 1.1;
-    height: auto;
-    border-radius: 50%;
-    background-color: white;
+  @at-root body.installApproved & {
+    .aboutButton {
+       animation: showButton 0.4s ease-in-out forwards;
+    }
 
-    img {
-      width: 12px;
-      height: auto;
-      fill: black;
+    .installButton {
+       animation: accentButton 1s ease-in-out forwards;
+    }
+  }
+
+  @keyframes showButton {
+    100% {
+      transform: none;
+      opacity: 1;
+    }
+  }
+
+  @keyframes accentButton {
+    40% {
+      transform: none;
+      opacity: 1;
+    }
+
+    55% {
+      transform: scale(1.225);
+    }
+
+    70% {
+      transform: none;
+    }
+
+    85% {
+      transform: scale(1.225);
+    }
+
+    100% {
+      transform: none;
+      opacity: 1;
     }
   }
 }
