@@ -1,38 +1,47 @@
-// наименование для нашего хранилища кэша
-var CACHE_NAME = 'app_serviceworker_v_1';
+var cacheName = 'app_serviceworker_v_123';
 
-// ссылки на кэшируемые файлы
-var  cacheUrls = ['/'];
+var cacheUrls = [
+  '/',
+  '/manifest.json',
+  '/builded_assets/scripts/index.js',
+  '/builded_assets/styles/index.css',
+  '/static/about.svg',
+  '/static/downArrow.svg',
+  '/static/github.svg',
+  '/static/install.svg',
+  '/static/iosActions.svg',
+  '/static/love.svg',
+  '/static/offline.svg',
+  '/static/robotomono-regular.woff2',
+  '/static/icons/icon-512x512.png',
+  '/static/icons/icon-128x128.png',
+  '/static/icons/icon-144x144.png',
+  '/static/icons/icon-152x152.png',
+  '/static/icons/icon-192x192.png',
+  '/static/icons/icon-384x384.png',
+  '/static/icons/icon-72x72.png',
+  '/static/icons/icon-96x96.png',
+  '/static/splash/launch-1125x2436.png',
+  '/static/splash/launch-1242x2148.png',
+  '/static/splash/launch-1536x2048.png',
+  '/static/splash/launch-1668x2224.png',
+  '/static/splash/launch-2048x2732.png',
+  '/static/splash/launch-640x1136.png',
+  '/static/splash/launch-750x1294.png'
+];
 
 self.addEventListener('install', function (event) {
-  // инсталляция
-  console.log('Install');
-
-  caches.open(CACHE_NAME).then(function (cache) {
-    // загружаем в наш cache необходимые файлы
-    return cache.addAll(cacheUrls);
-  })
+  event.waitUntil(
+    caches.open(cacheName).then(function (cache) {
+      return cache.addAll(cacheUrls);
+    })
+  );
 });
-
-self.addEventListener('activate', function (event) {
-  // активация
-  console.log('Activate');
-});
-
 
 self.addEventListener('fetch', function (event) {
-  console.log(event.request)
   event.respondWith(
-    // ищем запрашиваемый ресурс в хранилище кэша
-    caches.match(event.request).then(function (cachedResponse) {
-
-      // выдаём кэш, если он есть
-      if (cachedResponse) {
-        return cachedResponse;
-      }
-
-      // иначе запрашиваем из сети как обычно
-      return fetch(event.request);
+    fetch(event.request).catch(function () {
+      return caches.match(event.request);
     })
   );
 });
