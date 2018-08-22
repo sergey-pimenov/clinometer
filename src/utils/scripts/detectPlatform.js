@@ -17,7 +17,5 @@ export default function() {
 
   if (mobileAndTabletcheck()) {
     document.body.classList.add('mobile');
-  } else {
-    document.body.classList.add('notSupportedState');
   }
 }

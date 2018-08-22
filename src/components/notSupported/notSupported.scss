@@ -11,12 +11,12 @@
   background: white;
   display: none;
 
-  // @at-root body.notSupportedState & {
-  //   display: flex;
-  //   white-space: pre-wrap;
-  //   justify-content: center;
-  //   align-items: center;
-  // }
+  @at-root body.notSupportedState & {
+    display: flex;
+    white-space: pre-wrap;
+    justify-content: center;
+    align-items: center;
+  }
 
   b {
     font-weight: bold;

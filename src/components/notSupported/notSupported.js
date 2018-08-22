@@ -10,7 +10,7 @@ var notSupported = {
       if (indicator.degreeY == null) {
         document.body.classList.add('notSupportedState');
       }
-    }, 700);
+    }, 500);
   }
 }
 
