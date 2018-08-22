@@ -93,23 +93,23 @@ gulp.task('MinifyJS', function (cb) {
 });
 
 
-///// Minify CSS /////
-gulp.task('minifyCSS', function () {
+///// Set prefixes /////
+gulp.task('setPrefixes', function () {
   return gulp.src('builded_assets/styles/index.css')
-    .pipe(cleanCSS({debug: true}, function(details) {
-      console.log(details.name + ': ' + details.stats.originalSize);
-      console.log(details.name + ': ' + details.stats.minifiedSize);
+    .pipe(autoprefixer({
+      browsers: ['last 2 versions'],
+      cascade: false
     }))
     .pipe(gulp.dest('builded_assets/styles'));
 });
 
 
-///// Set prefixes /////
-gulp.task('setPrefixes', function(){
+///// Minify CSS /////
+gulp.task('minifyCSS', ['setPrefixes'], function () {
   return gulp.src('builded_assets/styles/index.css')
-    .pipe(autoprefixer({
-      browsers: ['last 2 versions'],
-      cascade: false
+    .pipe(cleanCSS({debug: true}, function(details) {
+      console.log(details.name + ': ' + details.stats.originalSize);
+      console.log(details.name + ': ' + details.stats.minifiedSize);
     }))
     .pipe(gulp.dest('builded_assets/styles'));
 });
@@ -139,4 +139,4 @@ gulp.task('default', [
 
 ///// Production /////
 
-gulp.task('prod', ['MinifyJS', 'minifyCSS', 'minifyHTML', 'setPrefixes']);
+gulp.task('prod', ['MinifyJS', 'setPrefixes', 'minifyCSS', 'minifyHTML']);
