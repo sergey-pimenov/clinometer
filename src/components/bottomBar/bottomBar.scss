@@ -1,11 +1,11 @@
 .bottomBar {
   width: 100%;
-  min-height: 54px;
+  min-height: 58px;
   padding: 0 14px;
   display: flex;
   align-items: center;
   font-size: 16px;
-  background-color: black;
+  background-color: #2f3542;
   color: white;
   overflow: hidden;
 
@@ -15,7 +15,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: auto;
+    margin-left: 15px;
     border-radius: 50%;
     background-color: white;
     
@@ -34,11 +34,12 @@
     width: 37px;
     height: 37px;
     padding-top: 2px;
-    margin-left: 15px;
+    margin-left: 12px;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    background-color: rgb(28, 255, 191);
+    // background-color: #7bed9f;
+    background-color: white;
 
     @at-root body:not(.safari) & {
       transform: translateX(calc(37px + 15px));
@@ -96,5 +97,33 @@
       transform: none;
       opacity: 1;
     }
+  }
+
+  .details {
+    margin-right: auto;
+    display: flex;
+    font-size: 12px;
+  }
+
+  .title {
+    margin-right: 3px;
+  }
+
+  .detailsData {
+    margin-left: 3px;
+  }
+
+  .yDataWrapper {
+    display: flex;
+    color: $yColor;
+  }
+
+  .xDataWrapper {
+    display: flex;
+    color: $xColor;
+  }
+
+  .xDataTitle {
+    margin-left: 10px;
   }
 }

@@ -5,23 +5,194 @@
   flex-direction: column;
   align-items: center;
   font-family: $app-font;
+  perspective: 500px;
 
   .rotate {
     margin: auto;
     display: flex;
     align-items: center;
     color: black;
+    display: none;
   }
 
-  .rotateData {
+  .allAxis {
+    width: 100%;
+    height: 100%;
+    display: flex;
+  }
+
+  $faceWidth: 150px;
+
+  .cube {
+    width: $faceWidth;
+    height: $faceWidth;
+    margin: auto;
     position: relative;
-    font-size: 140px;
+    transform-style: preserve-3d;
+    transition: all 0.1s linear;
+    transform: rotateX(calc(0.001deg + var(--y))) 
+               rotateY(calc(0.001deg + var(--x))) 
+               translateZ(0);
+  }
+
+  $cubeColor: rgba(#ced6e0, 0.35);
+
+  .face {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border: 1px dashed #2f3542;
+    background-color: $cubeColor;
+  }
+
+  .face-1 {
+    left: 0;
+    top: 0;
+    transform: translateZ(#{$faceWidth / 2});
+    border: 1px solid #2f3542;
+  }
+
+  .face-2 {
+    left: -$faceWidth;
+    top: 0;
+    transform: translateZ(#{$faceWidth / 2}) rotateY(-90deg);
+    transform-origin: 100% 50%;
+    background-color: darken($cubeColor, 15%);
+    border-right: none;
+  }
+
+  .face-3 {
+    left: 0;
+    top: -$faceWidth;
+    transform: translateZ(#{$faceWidth / 2}) rotateX(90deg);
+    transform-origin: 50% 100%;
+    background-color: darken($cubeColor, 15%);
+    border-bottom: none;
+  }
+
+  .face-4 {
+    left: $faceWidth;
+    top: 0;
+    transform: translateZ(#{$faceWidth / 2}) rotateY(90deg);
+    transform-origin: 0 50%;
+    background-color: darken($cubeColor, 15%);
+    border-left: none;
+  }
+
+  .face-5 {
+    left: 0;
+    top: $faceWidth;
+    transform: translateZ(#{$faceWidth / 2}) rotateX(-90deg);
+    transform-origin: 50% 0;
+    background-color: darken($cubeColor, 15%);
+    border-top: none;
+  }
+
+  .face-6 {
+    left: 0;
+    top: 0;
+    transform: translateZ(#{-$faceWidth / 2});
+    background-color: lighten($cubeColor, 3%);
+  }
+
+  .dataContainer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .yDataContainer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  $arrowPadding : 14px;
+  $arrowColor: rgb(182, 182, 182);
+
+  .yArrow {
+    width: 1px;
+    height: calc(100% - #{$arrowPadding * 2.15});
+    position: absolute;
+    left: $arrowPadding;
+    bottom: $arrowPadding;
+    background: $yColor;
+
+    &::before {
+      content: '';
+      width: 0;
+      height: 0;
+      position: absolute;
+      top: -2px;
+      left: -3.5px;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-bottom: 8px solid $yColor;
+    }
+  }
+
+  .rotateDataY {
+    position: absolute;
+    left: 35px;
+    top: 10px;
+    font-size: 35px;
+    color: $yColor;
 
     &::after {
       content: ' °';
       position: absolute;
-      right: 7%;
-      top: 10%;
+      right: 1px;
+      top: -3px;
+      transform: translateX(100%);
+      font-size: 30px;
+    }
+  }
+
+  .xDataContainer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .xArrow {
+    width: calc(100% - #{$arrowPadding * 2.15});
+    height: 1px;
+    position: absolute;
+    left: $arrowPadding;
+    bottom: $arrowPadding;
+    background-color: $xColor;
+
+    &::before {
+      content: '';
+      width: 0;
+      height: 0;
+      position: absolute;
+      top: -4px;
+      right: -2px;
+      border-top: 4px solid transparent;
+      border-left: 8px solid $xColor;
+      border-bottom: 4px solid transparent;
+    }
+  }
+
+  .rotateDataX {
+    position: absolute;
+    right: 33px;
+    bottom: 23px;
+    font-size: 35px;
+    color: $xColor;
+
+    &::after {
+      content: ' °';
+      position: absolute;
+      right: 1px;
+      top: -3px;
       transform: translateX(100%);
       font-size: 30px;
     }

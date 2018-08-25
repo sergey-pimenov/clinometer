@@ -17,6 +17,9 @@ $content-font: -apple-system,
                Helvetica,
                Arial;
 
+$yColor: #70a1ff;
+$xColor: #ffa502;
+
 * {
   margin: 0;
   padding: 0;
@@ -33,6 +36,7 @@ $content-font: -apple-system,
 
 body {
   font-family: $app-font;
+  background-color: #ffffff;
 }
 
 html,
