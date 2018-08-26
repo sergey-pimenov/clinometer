@@ -1,5 +1,6 @@
 import setCSSVar from './../../utils/scripts/setCSSVar';
 import notSupported from './../notSupported/notSupported';
+import inaccurate from './../inaccurate/inaccurate';
 
 var rotateDataYNode = document.querySelector('.rotateDataY');
 var rotateDataXNode = document.querySelector('.rotateDataX');
@@ -60,7 +61,7 @@ var indicator = {
 
   chooseApi() {
     indicator.checkDevicemotion();
-    // indicator.checkDeviceOrientation();
+    indicator.checkDeviceOrientation();
 
     setTimeout(() => {
       if (indicator.API != null) {
@@ -68,6 +69,10 @@ var indicator = {
         indicator.update();
       } else {
         notSupported.show();
+      }
+
+      if (indicator.API == 'deviceMotion') {
+        inaccurate.show();
       }
     }, 500);
   },
@@ -97,11 +102,12 @@ var indicator = {
   },
 
   setByMotionAPI(e) {
-    indicator.degreeY = e.accelerationIncludingGravity.y * 9.155645981688708;
+    var magicConvertingNumber = 9.155645981688708;
+    indicator.degreeY = e.accelerationIncludingGravity.y * magicConvertingNumber;
     indicator.degreeYRounded = Math.round(indicator.degreeY);
     indicator.degreeYAccurate = indicator.degreeY.toFixed(1);
 
-    indicator.degreeX = e.accelerationIncludingGravity.x * -9.155645981688708;
+    indicator.degreeX = e.accelerationIncludingGravity.x * -magicConvertingNumber;
     indicator.degreeXRounded = Math.round(indicator.degreeX);
     indicator.degreeXAccurate = indicator.degreeX.toFixed(1);
   },
