@@ -13,7 +13,6 @@ import iosMessage from './components/iosMessage/iosMessage';
 detectPlatform();
 
 
-notSupported.init();
 indicator.init();
 bottomBar.init();
 about.init();

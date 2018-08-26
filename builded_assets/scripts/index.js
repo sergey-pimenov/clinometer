@@ -111,6 +111,10 @@ var _setCSSVar = __webpack_require__(7);
 
 var _setCSSVar2 = _interopRequireDefault(_setCSSVar);
 
+var _notSupported = __webpack_require__(3);
+
+var _notSupported2 = _interopRequireDefault(_notSupported);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var rotateDataYNode = document.querySelector('.rotateDataY');
@@ -130,22 +134,76 @@ var indicator = {
   renderedDegreeXRounded: null,
   degreeXAccurate: 0,
   renderedDegreeXAccurate: null,
+  API: null,
 
   init: function init() {
-    indicator.setListeners();
-    indicator.update();
+    indicator.chooseApi();
+  },
+  checkDevicemotion: function checkDevicemotion() {
+    if (window.DeviceMotionEvent) {
+      window.addEventListener('devicemotion', function (e) {
+        onOrientation(e);
+      }, true);
+    }
+
+    function onOrientation(e) {
+      if (!(e.acceleration.x == null && e.acceleration.y == null && e.acceleration.z == null && e.accelerationIncludingGravity.x == null && e.accelerationIncludingGravity.y == null && e.accelerationIncludingGravity.z == null && e.rotationRate.alpha == null && e.rotationRate.beta == null && e.rotationRate.gamma == null)) {
+        indicator.API = 'deviceMotion';
+      }
+    }
+  },
+  checkDeviceOrientation: function checkDeviceOrientation() {
+    if (window.DeviceOrientationEvent) {
+      window.addEventListener('deviceorientation', onOrientation, true);
+    }
+
+    function onOrientation(e) {
+      if (!(e.alpha == null && e.beta == null && e.gamma == null)) {
+        indicator.API = 'deviceOrientation';
+      }
+    }
+  },
+  chooseApi: function chooseApi() {
+    indicator.checkDevicemotion();
+    // indicator.checkDeviceOrientation();
+
+    setTimeout(function () {
+      if (indicator.API != null) {
+        indicator.setListeners();
+        indicator.update();
+      } else {
+        _notSupported2.default.show();
+      }
+    }, 500);
   },
   setListeners: function setListeners() {
-    window.addEventListener('deviceorientation', function (e) {
-      indicator.setDegreeY(e);
-    });
+    if (indicator.API == 'deviceOrientation') {
+      window.addEventListener('deviceorientation', function (e) {
+        indicator.setByOrientationAPI(e);
+      }, true);
+    }
+
+    if (indicator.API == 'deviceMotion') {
+      window.addEventListener('devicemotion', function (e) {
+        indicator.setByMotionAPI(e);
+      }, true);
+    }
   },
-  setDegreeY: function setDegreeY(e) {
+  setByOrientationAPI: function setByOrientationAPI(e) {
     indicator.degreeY = e.beta;
     indicator.degreeYRounded = Math.round(indicator.degreeY);
     indicator.degreeYAccurate = indicator.degreeY.toFixed(1);
 
     indicator.degreeX = e.gamma;
+    indicator.degreeXRounded = Math.round(indicator.degreeX);
+    indicator.degreeXAccurate = indicator.degreeX.toFixed(1);
+  },
+  setByMotionAPI: function setByMotionAPI(e) {
+    indicator.degreeY = e.accelerationIncludingGravity.y * 9.155645981688708;
+    indicator.degreeYRounded = Math.round(indicator.degreeY);
+    indicator.degreeYAccurate = indicator.degreeY.toFixed(1);
+
+    indicator.degreeX = e.accelerationIncludingGravity.x * -9.155645981688708;
     indicator.degreeXRounded = Math.round(indicator.degreeX);
     indicator.degreeXAccurate = indicator.degreeX.toFixed(1);
   },
@@ -227,6 +285,31 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _indicator = __webpack_require__(1);
+
+var _indicator2 = _interopRequireDefault(_indicator);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var notSupported = {
+  show: function show() {
+    document.body.classList.add('notSupportedState');
+  }
+};
+
+exports.default = notSupported;
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _about = __webpack_require__(0);
 
 var _about2 = _interopRequireDefault(_about);
@@ -269,38 +352,6 @@ var bottomBar = {
 };
 
 exports.default = bottomBar;
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _indicator = __webpack_require__(1);
-
-var _indicator2 = _interopRequireDefault(_indicator);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var notSupported = {
-  init: function init() {
-    notSupported.detect();
-  },
-  detect: function detect() {
-    setTimeout(function () {
-      if (_indicator2.default.degreeY == null) {
-        document.body.classList.add('notSupportedState');
-      }
-    }, 500);
-  }
-};
-
-exports.default = notSupported;
 
 /***/ }),
 /* 5 */
@@ -348,7 +399,7 @@ var _detectPlatform = __webpack_require__(5);
 
 var _detectPlatform2 = _interopRequireDefault(_detectPlatform);
 
-var _notSupported = __webpack_require__(4);
+var _notSupported = __webpack_require__(3);
 
 var _notSupported2 = _interopRequireDefault(_notSupported);
 
@@ -360,7 +411,7 @@ var _about = __webpack_require__(0);
 
 var _about2 = _interopRequireDefault(_about);
 
-var _bottomBar = __webpack_require__(3);
+var _bottomBar = __webpack_require__(4);
 
 var _bottomBar2 = _interopRequireDefault(_bottomBar);
 
@@ -376,7 +427,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // Components
 
 
-_notSupported2.default.init();
 _indicator2.default.init();
 _bottomBar2.default.init();
 _about2.default.init();

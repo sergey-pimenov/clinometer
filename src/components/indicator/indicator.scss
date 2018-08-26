@@ -22,6 +22,8 @@
   }
 
   $faceWidth: 150px;
+  --y: 0;
+  --x: 0;
 
   .cube {
     width: $faceWidth;
