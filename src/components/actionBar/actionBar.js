@@ -4,12 +4,12 @@ import iosMessage from './../iosMessage/iosMessage';
 var aboutButtonNode = document.querySelector('.aboutButton');
 var installButtonNode = document.querySelector('.installButton');
 
-var bottomBar = {
+var actionBar = {
   init() {
-    bottomBar.setListers();
+    actionBar.setListeners();
   },
 
-  setListers() {
+  setListeners() {
     aboutButtonNode.addEventListener('click', about.show);
 
     if(document.body.classList.contains('safari')) {
@@ -33,4 +33,4 @@ var bottomBar = {
   }
 }
 
-export default bottomBar;
+export default actionBar;

@@ -6,7 +6,7 @@ import detectPlatform from './utils/scripts/detectPlatform';
 import notSupported from './components/notSupported/notSupported';
 import indicator from './components/indicator/indicator';
 import about from './components/about/about';
-import bottomBar from './components/bottomBar/bottomBar';
+import actionBar from './components/actionBar/actionBar';
 import iosMessage from './components/iosMessage/iosMessage';
 
 
@@ -14,7 +14,7 @@ detectPlatform();
 
 
 indicator.init();
-bottomBar.init();
+actionBar.init();
 about.init();
 iosMessage.init();
 

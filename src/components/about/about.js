@@ -3,10 +3,10 @@ var aboutNode = document.querySelector('.about');
 
 var about = {
   init() {
-    about.setListener();
+    about.setListeners();
   },
 
-  setListener() {
+  setListeners() {
     closeButtonNode.addEventListener('click', about.hide);
   },
 

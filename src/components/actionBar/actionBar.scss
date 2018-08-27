@@ -1,12 +1,12 @@
-.bottomBar {
+.actionBar {
   width: 100%;
   min-height: 58px;
   padding: 0 14px;
   display: flex;
   align-items: center;
   font-size: 16px;
-  background-color: #2f3542;
-  color: white;
+  background-color: $brandColor;
+  color: $basicColor;
   overflow: hidden;
   font-family: $app-font;
 
@@ -17,49 +17,47 @@
     align-items: center;
   }
 
-  .aboutButton {
-    width: 37px;
-    height: 37px;
-    margin-left: 12px;
+  $buttonSize: 37px;
+  $buttonIndent: 12px;
+
+  %button {
+    width: $buttonSize;
+    height: $buttonSize;
     padding-top: 2px;
     border-radius: 50%;
-    background-color: white;
-    
-    @at-root body:not(.safari) & {
-      transform: translateX(calc(37px + 15px));
-    }
+    background-color: $basicColor;
 
     img {
       width: 12px;
       height: auto;
+    }
+  }
+
+  .aboutButton {
+    @extend %button;
+    
+    @at-root body:not(.safari) & {
+      transform: translateX(calc(#{$buttonSize} + #{$buttonIndent}));
     }
   }
 
   .installButton {
-    width: 37px;
-    height: 37px;
-    padding-top: 2px;
-    margin-left: 12px;
-    border-radius: 50%;
-    background-color: white;
+    @extend %button;
+    margin-left: $buttonIndent;
 
     @at-root body:not(.safari) & {
-      transform: translateX(calc(37px + 15px));
+      transform: translateX(calc(#{$buttonSize} + #{$buttonIndent}));
       opacity: 0;
     }
 
+
+    // Hide install button when app installed
     @media all and (display-mode: standalone) {
       display: none !important;
     }
-
-    img {
-      width: 12px;
-      height: auto;
-      // border: 1px solid #000;
-    }
-
   }
 
+  // Show button when browser fired 'beforeinstallprompt' event
   @at-root body.installApproved & {
     .aboutButton {
        animation: showButton 0.4s ease-in-out forwards;
@@ -104,7 +102,7 @@
   .details {
     margin-right: auto;
     display: flex;
-    font-size: 12px;
+    font-size: $smallFont;
   }
 
   .title {
