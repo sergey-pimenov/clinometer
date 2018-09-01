@@ -36,7 +36,7 @@
   .aboutButton {
     @extend %button;
     
-    @at-root body:not(.safari) & {
+    @at-root body:not(.safari):not(.installable) & {
       transform: translateX(calc(#{$buttonSize} + #{$buttonIndent}));
     }
   }
@@ -45,7 +45,7 @@
     @extend %button;
     margin-left: $buttonIndent;
 
-    @at-root body:not(.safari) & {
+    @at-root body:not(.safari):not(.installable) & {
       transform: translateX(calc(#{$buttonSize} + #{$buttonIndent}));
       opacity: 0;
     }
@@ -102,7 +102,7 @@
   .details {
     margin-right: auto;
     display: flex;
-    font-size: $smallFont;
+    font-size: 12px;
   }
 
   .title {
