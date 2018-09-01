@@ -21,7 +21,9 @@
     width: $faceWidth;
     height: $faceWidth;
     margin: auto;
-    position: relative;
+    left: calc(50% - #{$faceWidth / 2});
+    top: calc(50% - #{$faceWidth / 2});
+    position: absolute;
     transform-style: preserve-3d;
     transition: all 0.1s linear;
     transform: rotateX(calc(0.001deg + var(--y))) 
