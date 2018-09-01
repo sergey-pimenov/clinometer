@@ -18,7 +18,7 @@ $content-font: -apple-system,
 							 "Helvetica Neue",
                Helvetica,
                Arial;
-$smallFont: 12px;
+
 
 // Colors
 $basicColor: white;
@@ -42,7 +42,7 @@ $xColor: #ffa502;
 
 body {
   font-family: $content-font;
-  background-color: #ffffff;
+  background-color: $basicColor;
 }
 
 html,
@@ -62,5 +62,65 @@ body {
     opacity: 0.2;
     filter: blur(5px) grayscale(1);
     pointer-events: none;
+  }
+}
+
+body::before {
+  content: 'Please, rotate screen to portrait orientation';
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 14px;
+  z-index: 2;
+  background: rgba($basicColor, 0.95);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.5s 0.3s;
+}
+
+body::after {
+  content: '';
+  width: 200%;
+  height: 200%;
+  position: fixed;
+  left: -50%;
+  top: -50%;
+  font-size: 16px;
+  background: url(../../static/rotate.svg) no-repeat center center;
+  background-size: 160px;
+  z-index: 1;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s 0.3s;
+}
+
+@keyframes rotateArrows {
+  100% {
+    transform: rotateZ(180deg);
+  }
+}
+
+@media all and (orientation: landscape) {
+  body:not(.notSupportedState) {
+    &::before {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    &::after {
+      visibility: visible;
+      opacity: 1;
+      animation: rotateArrows 1.5s cubic-bezier(0.775, -0.325, 0.230, 1.390) infinite;
+    }
+
+    .initScreen {
+      filter: blur(3px) grayscale(1);
+    }
   }
 }
