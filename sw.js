@@ -1,4 +1,4 @@
-var cacheName = 'app_serviceworker_v_123';
+var cacheName = 'app_serviceworker_v_2';
 
 var cacheUrls = [
   '/',
