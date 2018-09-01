@@ -1,1 +1,521 @@
-@charset "UTF-8";@font-face{font-family:'Roboto Mono';src:url(../../static/robotomono-regular.woff2) format("woff2");font-weight:400;font-style:normal}*{margin:0;padding:0;-webkit-box-sizing:border-box;box-sizing:border-box;background-color:transparent;-webkit-box-shadow:none;box-shadow:none;outline:0;border:none;text-decoration:none;color:inherit;list-style:none;font-family:inherit}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",Helvetica,Arial;background-color:#fff}body,html{width:100%;height:100%}.initScreen{width:100%;height:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-transition:all .2s ease-out;transition:all .2s ease-out}body.showInstruction .initScreen{opacity:.2;-webkit-filter:blur(5px) grayscale(1);filter:blur(5px) grayscale(1);pointer-events:none}.notSupported{width:100%;height:100%;padding:20px;display:-webkit-box;display:-ms-flexbox;display:flex;white-space:pre-wrap;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;position:absolute;left:0;top:0;z-index:9999;line-height:1.5;text-align:center;background:#fff;visibility:hidden;opacity:0;-webkit-transition:opacity .15s ease-out;transition:opacity .15s ease-out}body.notSupportedState .notSupported{visibility:visible;opacity:1}.notSupported b{font-weight:700}.indicator{width:100%;height:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-family:"Roboto Mono",monospace;-webkit-perspective:500px;perspective:500px;--y:0;--x:0}.indicator .allAxis{width:100%;height:100%;display:-webkit-box;display:-ms-flexbox;display:flex}.indicator .cube{width:150px;height:150px;margin:auto;position:relative;-webkit-transform-style:preserve-3d;transform-style:preserve-3d;-webkit-transition:all .1s linear;transition:all .1s linear;-webkit-transform:rotateX(calc(.001deg + var(--y))) rotateY(calc(.001deg + var(--x))) translateZ(0);transform:rotateX(calc(.001deg + var(--y))) rotateY(calc(.001deg + var(--x))) translateZ(0)}.indicator .face{width:100%;height:100%;position:absolute;border:1px dashed #2f3542;background-color:rgba(206,214,224,.35)}.indicator .face-1{left:0;top:0;-webkit-transform:translateZ(75px);transform:translateZ(75px);border:1px solid #2f3542}.indicator .face-2{left:-150px;top:0;-webkit-transform:translateZ(75px) rotateY(-90deg);transform:translateZ(75px) rotateY(-90deg);-webkit-transform-origin:100% 50%;transform-origin:100% 50%;background-color:rgba(159,175,194,.35);border-right:none}.indicator .face-3{left:0;top:-150px;-webkit-transform:translateZ(75px) rotateX(90deg);transform:translateZ(75px) rotateX(90deg);-webkit-transform-origin:50% 100%;transform-origin:50% 100%;background-color:rgba(159,175,194,.35);border-bottom:none}.indicator .face-4{left:150px;top:0;-webkit-transform:translateZ(75px) rotateY(90deg);transform:translateZ(75px) rotateY(90deg);-webkit-transform-origin:0 50%;transform-origin:0 50%;background-color:rgba(159,175,194,.35);border-left:none}.indicator .face-5{left:0;top:150px;-webkit-transform:translateZ(75px) rotateX(-90deg);transform:translateZ(75px) rotateX(-90deg);-webkit-transform-origin:50% 0;transform-origin:50% 0;background-color:rgba(159,175,194,.35);border-top:none}.indicator .face-6{left:0;top:0;-webkit-transform:translateZ(-75px);transform:translateZ(-75px);background-color:rgba(215,222,230,.35)}.indicator .dataContainer{width:100%;height:100%;position:absolute;left:0;top:0}.indicator .yDataContainer{width:100%;height:100%;position:absolute;left:0;top:0}.indicator .yArrow{width:1px;height:calc(100% - 30.1px);position:absolute;left:14px;bottom:14px;background:#70a1ff}.indicator .yArrow::before{content:'';width:0;height:0;position:absolute;top:-2px;left:-3.5px;border-left:4px solid transparent;border-right:4px solid transparent;border-bottom:8px solid #70a1ff}.indicator .rotateDataY{position:absolute;left:35px;top:10px;font-size:35px;color:#70a1ff}.indicator .rotateDataY::after{content:' °';position:absolute;right:1px;top:-3px;-webkit-transform:translateX(100%);transform:translateX(100%);font-size:30px}.indicator .xDataContainer{width:100%;height:100%;position:absolute;left:0;top:0}.indicator .xArrow{width:calc(100% - 30.1px);height:1px;position:absolute;left:14px;bottom:14px;background-color:#ffa502}.indicator .xArrow::before{content:'';width:0;height:0;position:absolute;top:-4px;right:-2px;border-top:4px solid transparent;border-left:8px solid #ffa502;border-bottom:4px solid transparent}.indicator .rotateDataX{position:absolute;right:33px;bottom:23px;font-size:35px;color:#ffa502}.indicator .rotateDataX::after{content:' °';position:absolute;right:1px;top:-3px;-webkit-transform:translateX(100%);transform:translateX(100%);font-size:30px}.actionBar{width:100%;min-height:58px;padding:0 14px;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-size:16px;background-color:#2f3542;color:#fff;overflow:hidden;font-family:"Roboto Mono",monospace}.actionBar .centeringWrapper{padding-bottom:1px;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.actionBar .aboutButton,.actionBar .installButton{width:37px;height:37px;padding-top:2px;border-radius:50%;background-color:#fff}.actionBar .aboutButton img,.actionBar .installButton img{width:12px;height:auto}body:not(.safari) .actionBar .aboutButton{-webkit-transform:translateX(calc(37px + 12px));transform:translateX(calc(37px + 12px))}.actionBar .installButton{margin-left:12px}body:not(.safari) .actionBar .installButton{-webkit-transform:translateX(calc(37px + 12px));transform:translateX(calc(37px + 12px));opacity:0}@media all and (display-mode:standalone){.actionBar .installButton{display:none!important}}body.installApproved .actionBar .aboutButton{-webkit-animation:showButton .4s ease-in-out forwards;animation:showButton .4s ease-in-out forwards}body.installApproved .actionBar .installButton{-webkit-animation:accentButton 1s ease-in-out forwards;animation:accentButton 1s ease-in-out forwards}@-webkit-keyframes showButton{100%{-webkit-transform:none;transform:none;opacity:1}}@keyframes showButton{100%{-webkit-transform:none;transform:none;opacity:1}}@-webkit-keyframes accentButton{40%{-webkit-transform:none;transform:none;opacity:1}55%{-webkit-transform:scale(1.225);transform:scale(1.225)}70%{-webkit-transform:none;transform:none}85%{-webkit-transform:scale(1.225);transform:scale(1.225)}100%{-webkit-transform:none;transform:none;opacity:1}}@keyframes accentButton{40%{-webkit-transform:none;transform:none;opacity:1}55%{-webkit-transform:scale(1.225);transform:scale(1.225)}70%{-webkit-transform:none;transform:none}85%{-webkit-transform:scale(1.225);transform:scale(1.225)}100%{-webkit-transform:none;transform:none;opacity:1}}.actionBar .details{margin-right:auto;display:-webkit-box;display:-ms-flexbox;display:flex;font-size:12px}.actionBar .title{margin-right:3px}.actionBar .detailsData{margin-left:3px}.actionBar .yDataWrapper{display:-webkit-box;display:-ms-flexbox;display:flex;color:#70a1ff}.actionBar .xDataWrapper{display:-webkit-box;display:-ms-flexbox;display:flex;color:#ffa502}.actionBar .xDataTitle{margin-left:10px}.about{position:fixed;left:0;top:0;width:100%;height:100%;overflow-y:auto;z-index:1;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",Helvetica,Arial;background-color:#fff;line-height:1.4;display:none}.about.open{display:block}.about .closeButton{width:100%;min-height:58px;margin-top:auto;background-color:#2f3542;font-size:14px;text-transform:uppercase;color:#fff}.about .scrollWrapper{height:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.about .aboutContent{width:100%;height:100%;-webkit-box-flex:1;-ms-flex:1;flex:1;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.about .titleAndDesc{margin-bottom:60px;text-align:center}.about .title{font-size:28px}.about .description{margin-top:5px;font-size:14px}.about .info{font-size:14px}.about li{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;margin-bottom:18px}.about .offlineIcon{width:20px;height:auto;margin-right:7px}.about .githubIcon{width:18px;height:auto;margin-right:7px}.about .heartIcon{width:18px;margin:0 7px;-webkit-animation:heartAnim .3s cubic-bezier(.26,.68,.65,1.65) infinite alternate;animation:heartAnim .3s cubic-bezier(.26,.68,.65,1.65) infinite alternate}@-webkit-keyframes heartAnim{100%{-webkit-transform:scale(.9);transform:scale(.9)}}@keyframes heartAnim{100%{-webkit-transform:scale(.9);transform:scale(.9)}}.iosMessage{width:100%;height:100%;position:absolute;left:0;top:0;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;opacity:0;pointer-events:none;z-index:3;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",Helvetica,Arial;-webkit-transition:all .2s ease-out;transition:all .2s ease-out}body.showInstruction .iosMessage{opacity:1;pointer-events:auto}.iosMessage.showInstruction .instructionWrapper{opacity:1;pointer-events:auto}.iosMessage .iosInstruction{margin:auto 0 20px 0;height:62px;padding:0 23px;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;position:relative;z-index:2;background-color:#fff;border:2px #2f3542 solid;border-radius:2px;font-size:14px;font-weight:600}.iosMessage .iosInstruction::after{content:'';width:20px;height:20px;position:absolute;left:calc(50% - 10px);bottom:-22px;background:url(../../static/downArrow.svg) no-repeat center top;background-size:100% auto;z-index:1;-webkit-animation:arrowAnim .4s infinite alternate;animation:arrowAnim .4s infinite alternate}@-webkit-keyframes arrowAnim{100%{-webkit-transform:translateY(-2px);transform:translateY(-2px)}}@keyframes arrowAnim{100%{-webkit-transform:translateY(-2px);transform:translateY(-2px)}}.iosMessage .close{width:27px;height:27px;position:absolute;right:-35px;top:-32px}.iosMessage .close::before{content:'';width:20px;height:2px;display:block;position:absolute;top:50%;left:0;background-color:#2f3542;-webkit-transform:rotateZ(45deg);transform:rotateZ(45deg)}.iosMessage .close::after{content:'';width:20px;height:2px;display:block;position:absolute;top:50%;left:0;background-color:#2f3542;-webkit-transform:rotateZ(-45deg);transform:rotateZ(-45deg)}.iosMessage .iosActionsIcon{width:19px;margin:0 10px;position:relative;top:-3px}.iosMessage .addToHome{width:25px;margin-left:10px}.inaccurate{width:100%;height:100%;padding:20px;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;position:absolute;left:0;top:0;z-index:1001;background-color:rgba(255,255,255,.95);line-height:1.3;visibility:hidden;opacity:0;-webkit-transition:opacity .2s ease-out;transition:opacity .2s ease-out}.inaccurate.show{visibility:visible;opacity:1}.inaccurate .title{width:100%;font-size:20px}.inaccurate .warning{width:100%;margin-top:15px;font-size:13px}.inaccurate .continue{height:36px;margin-top:35px;padding:0 16px;background-color:#2f3542;color:#fff;border-radius:2px;text-transform:uppercase;font-size:12px}
+@charset "UTF-8";
+@font-face {
+  font-family: 'Roboto Mono';
+  src: url("../../static/robotomono-regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal; }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: transparent;
+  box-shadow: none;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  color: inherit;
+  list-style: none;
+  font-family: inherit; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial;
+  background-color: white; }
+
+html,
+body {
+  width: 100%;
+  height: 100%; }
+
+.initScreen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s ease-out; }
+  body.showInstruction .initScreen {
+    opacity: 0.2;
+    filter: blur(5px) grayscale(1);
+    pointer-events: none; }
+
+body::before {
+  content: 'Please, rotate screen to portrait orientation';
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 14px;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.95);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.5s 0.3s; }
+
+body::after {
+  content: '';
+  width: 200%;
+  height: 200%;
+  position: fixed;
+  left: -50%;
+  top: -50%;
+  font-size: 16px;
+  background: url(../../static/rotate.svg) no-repeat center center;
+  background-size: 160px;
+  z-index: 1;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s 0.3s; }
+
+@keyframes rotateArrows {
+  100% {
+    transform: rotateZ(180deg); } }
+
+@media all and (orientation: landscape) {
+  body:not(.notSupportedState)::before {
+    visibility: visible;
+    opacity: 1; }
+  body:not(.notSupportedState)::after {
+    visibility: visible;
+    opacity: 1;
+    animation: rotateArrows 1.5s cubic-bezier(0.775, -0.325, 0.23, 1.39) infinite; }
+  body:not(.notSupportedState) .initScreen {
+    filter: blur(3px) grayscale(1); } }
+
+.notSupported {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  white-space: pre-wrap;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  line-height: 1.5;
+  text-align: center;
+  background: white;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.15s ease-out; }
+  body.notSupportedState .notSupported {
+    visibility: visible;
+    opacity: 1; }
+  .notSupported b {
+    font-weight: bold; }
+
+.indicator {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Roboto Mono", monospace;
+  perspective: 500px;
+  --y: 0;
+  --x: 0; }
+  .indicator .allAxis {
+    width: 100%;
+    height: 100%;
+    display: flex; }
+  .indicator .cube {
+    width: 150px;
+    height: 150px;
+    margin: auto;
+    left: calc(50% - 75px);
+    top: calc(50% - 75px);
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: all 0.1s linear;
+    transform: rotateX(calc(0.001deg + var(--y))) rotateY(calc(0.001deg + var(--x))) translateZ(0); }
+  .indicator .face {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border: 1px dashed #2f3542;
+    background-color: rgba(206, 214, 224, 0.35); }
+  .indicator .face-1 {
+    left: 0;
+    top: 0;
+    transform: translateZ(75px);
+    border: 1px solid #2f3542; }
+  .indicator .face-2 {
+    left: -150px;
+    top: 0;
+    transform: translateZ(75px) rotateY(-90deg);
+    transform-origin: 100% 50%;
+    background-color: rgba(159, 175, 194, 0.35);
+    border-right: none; }
+  .indicator .face-3 {
+    left: 0;
+    top: -150px;
+    transform: translateZ(75px) rotateX(90deg);
+    transform-origin: 50% 100%;
+    background-color: rgba(159, 175, 194, 0.35);
+    border-bottom: none; }
+  .indicator .face-4 {
+    left: 150px;
+    top: 0;
+    transform: translateZ(75px) rotateY(90deg);
+    transform-origin: 0 50%;
+    background-color: rgba(159, 175, 194, 0.35);
+    border-left: none; }
+  .indicator .face-5 {
+    left: 0;
+    top: 150px;
+    transform: translateZ(75px) rotateX(-90deg);
+    transform-origin: 50% 0;
+    background-color: rgba(159, 175, 194, 0.35);
+    border-top: none; }
+  .indicator .face-6 {
+    left: 0;
+    top: 0;
+    transform: translateZ(-75px);
+    background-color: rgba(215, 222, 230, 0.35); }
+  .indicator .dataContainer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0; }
+  .indicator .yDataContainer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0; }
+  .indicator .yArrow {
+    width: 1px;
+    height: calc(100% - 30.1px);
+    position: absolute;
+    left: 14px;
+    bottom: 14px;
+    background: #70a1ff; }
+    .indicator .yArrow::before {
+      content: '';
+      width: 0;
+      height: 0;
+      position: absolute;
+      top: -2px;
+      left: -3.5px;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-bottom: 8px solid #70a1ff; }
+  .indicator .rotateDataY {
+    position: absolute;
+    left: 35px;
+    top: 10px;
+    font-size: 35px;
+    color: #70a1ff; }
+    .indicator .rotateDataY::after {
+      content: ' °';
+      position: absolute;
+      right: 1px;
+      top: -3px;
+      transform: translateX(100%);
+      font-size: 30px; }
+  .indicator .xDataContainer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0; }
+  .indicator .xArrow {
+    width: calc(100% - 30.1px);
+    height: 1px;
+    position: absolute;
+    left: 14px;
+    bottom: 14px;
+    background-color: #ffa502; }
+    .indicator .xArrow::before {
+      content: '';
+      width: 0;
+      height: 0;
+      position: absolute;
+      top: -4px;
+      right: -2px;
+      border-top: 4px solid transparent;
+      border-left: 8px solid #ffa502;
+      border-bottom: 4px solid transparent; }
+  .indicator .rotateDataX {
+    position: absolute;
+    right: 33px;
+    bottom: 23px;
+    font-size: 35px;
+    color: #ffa502; }
+    .indicator .rotateDataX::after {
+      content: ' °';
+      position: absolute;
+      right: 1px;
+      top: -3px;
+      transform: translateX(100%);
+      font-size: 30px; }
+
+.actionBar {
+  width: 100%;
+  min-height: 58px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  background-color: #2f3542;
+  color: white;
+  overflow: hidden;
+  font-family: "Roboto Mono", monospace; }
+  .actionBar .centeringWrapper {
+    padding-bottom: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+  .actionBar .aboutButton, .actionBar .installButton {
+    width: 37px;
+    height: 37px;
+    padding-top: 2px;
+    border-radius: 50%;
+    background-color: white; }
+    .actionBar .aboutButton img, .actionBar .installButton img {
+      width: 12px;
+      height: auto; }
+  body:not(.safari):not(.installable) .actionBar .aboutButton {
+    transform: translateX(calc(37px + 12px)); }
+  .actionBar .installButton {
+    margin-left: 12px; }
+    body:not(.safari):not(.installable) .actionBar .installButton {
+      transform: translateX(calc(37px + 12px));
+      opacity: 0; }
+    @media all and (display-mode: standalone) {
+      .actionBar .installButton {
+        display: none !important; } }
+  body.installApproved .actionBar .aboutButton {
+    animation: showButton 0.4s ease-in-out forwards; }
+  body.installApproved .actionBar .installButton {
+    animation: accentButton 1s ease-in-out forwards; }
+
+@keyframes showButton {
+  100% {
+    transform: none;
+    opacity: 1; } }
+
+@keyframes accentButton {
+  40% {
+    transform: none;
+    opacity: 1; }
+  55% {
+    transform: scale(1.225); }
+  70% {
+    transform: none; }
+  85% {
+    transform: scale(1.225); }
+  100% {
+    transform: none;
+    opacity: 1; } }
+  .actionBar .details {
+    margin-right: auto;
+    display: flex;
+    font-size: 12px; }
+  .actionBar .title {
+    margin-right: 3px; }
+  .actionBar .detailsData {
+    margin-left: 3px; }
+  .actionBar .yDataWrapper {
+    display: flex;
+    color: #70a1ff; }
+  .actionBar .xDataWrapper {
+    display: flex;
+    color: #ffa502; }
+  .actionBar .xDataTitle {
+    margin-left: 10px; }
+
+.about {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 1;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial;
+  background-color: white;
+  line-height: 1.4;
+  display: none; }
+  .about.open {
+    display: block; }
+  .about .closeButton {
+    width: 100%;
+    min-height: 58px;
+    margin-top: auto;
+    background-color: #2f3542;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: white; }
+  .about .scrollWrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column; }
+  .about .aboutContent {
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; }
+  .about .titleAndDesc {
+    margin-bottom: 60px;
+    text-align: center; }
+  .about .title {
+    font-size: 28px; }
+  .about .description {
+    margin-top: 5px;
+    font-size: 14px; }
+  .about .info {
+    font-size: 14px; }
+  .about li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px; }
+  .about .offlineIcon {
+    width: 20px;
+    height: auto;
+    margin-right: 7px; }
+  .about .githubIcon {
+    width: 18px;
+    height: auto;
+    margin-right: 7px; }
+  .about .heartIcon {
+    width: 18px;
+    margin: 0 7px;
+    animation: heartAnim 0.3s cubic-bezier(0.26, 0.68, 0.65, 1.65) infinite alternate; }
+
+@keyframes heartAnim {
+  100% {
+    transform: scale(0.9); } }
+
+.iosMessage {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 3;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial;
+  transition: all 0.2s ease-out; }
+  body.showInstruction .iosMessage {
+    opacity: 1;
+    pointer-events: auto; }
+  .iosMessage.showInstruction .instructionWrapper {
+    opacity: 1;
+    pointer-events: auto; }
+  .iosMessage .iosInstruction {
+    margin: auto 0 20px 0;
+    height: 62px;
+    padding: 0 23px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    background-color: white;
+    border: 2px #2f3542 solid;
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: 600; }
+    .iosMessage .iosInstruction::after {
+      content: '';
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      left: calc(50% - 10px);
+      bottom: -22px;
+      background: url(../../static/downArrow.svg) no-repeat center top;
+      background-size: 100% auto;
+      z-index: 1;
+      animation: arrowAnim 0.4s infinite alternate; }
+
+@keyframes arrowAnim {
+  100% {
+    transform: translateY(-2px); } }
+  .iosMessage .close {
+    width: 27px;
+    height: 27px;
+    position: absolute;
+    right: -35px;
+    top: -32px; }
+    .iosMessage .close::before {
+      content: '';
+      width: 20px;
+      height: 2px;
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      background-color: #2f3542;
+      transform: rotateZ(45deg); }
+    .iosMessage .close::after {
+      content: '';
+      width: 20px;
+      height: 2px;
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      background-color: #2f3542;
+      transform: rotateZ(-45deg); }
+  .iosMessage .iosActionsIcon {
+    width: 19px;
+    margin: 0 10px;
+    position: relative;
+    top: -3px; }
+  .iosMessage .addToHome {
+    width: 25px;
+    margin-left: 10px; }
+
+.inaccurate {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1001;
+  background-color: rgba(255, 255, 255, 0.95);
+  line-height: 1.3;
+  text-align: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease-out; }
+  .inaccurate.show {
+    visibility: visible;
+    opacity: 1; }
+  .inaccurate .title {
+    width: 100%;
+    font-size: 20px; }
+  .inaccurate .warning {
+    width: 100%;
+    margin-top: 15px;
+    font-size: 13px; }
+  .inaccurate .continue {
+    height: 36px;
+    margin-top: 35px;
+    padding: 0 16px;
+    background-color: #2f3542;
+    color: white;
+    border-radius: 2px;
+    text-transform: uppercase;
+    font-size: 12px; }
