@@ -107,7 +107,7 @@ body::after {
 }
 
 @media all and (orientation: landscape) {
-  body:not(.notSupportedState) {
+  body.mobile:not(.notSupportedState) {
     &::before {
       visibility: visible;
       opacity: 1;
