@@ -19,7 +19,8 @@ var indicator = {
   renderedDegreeXRounded: null,
   degreeXAccurate: 0,
   renderedDegreeXAccurate: null,
-  API: null,
+  APIDeviceMotion: false,
+  APIDeviceOrientation: false,
 
   init() {
     indicator.chooseApi();
@@ -42,7 +43,7 @@ var indicator = {
         e.rotationRate.alpha == null &&
         e.rotationRate.beta == null &&
         e.rotationRate.gamma == null)) {
-        indicator.API = 'deviceMotion';
+        indicator.APIDeviceMotion = true;
       }
     }
   },
@@ -54,7 +55,7 @@ var indicator = {
 
     function onOrientation(e) {
       if (!(e.alpha == null && e.beta == null && e.gamma == null)) {
-        indicator.API = 'deviceOrientation';
+        indicator.APIDeviceOrientation = true;
       }
     }
   },
@@ -64,7 +65,7 @@ var indicator = {
     indicator.checkDeviceOrientation();
 
     setTimeout(() => {
-      if (indicator.API != null) {
+      if (indicator.APIDeviceOrientation || indicator.APIDeviceMotion) {
         indicator.setListeners();
         indicator.update();
       } else {
@@ -78,13 +79,11 @@ var indicator = {
   },
 
   setListeners() {
-    if (indicator.API == 'deviceOrientation') {
+    if (indicator.APIDeviceOrientation) {
       window.addEventListener('deviceorientation', (e) => {
         indicator.setByOrientationAPI(e);
       }, true);
-    }
-
-    if (indicator.API == 'deviceMotion') {
+    } else {
       window.addEventListener('devicemotion', (e) => {
         indicator.setByMotionAPI(e);
       }, true);
@@ -103,6 +102,7 @@ var indicator = {
 
   setByMotionAPI(e) {
     var magicConvertingNumber = 9.155645981688708;
+
     indicator.degreeY = e.accelerationIncludingGravity.y * magicConvertingNumber;
     indicator.degreeYRounded = Math.round(indicator.degreeY);
     indicator.degreeYAccurate = indicator.degreeY.toFixed(1);
