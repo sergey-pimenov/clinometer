@@ -25,7 +25,7 @@
     top: calc(50% - #{$faceWidth / 2});
     position: absolute;
     transform-style: preserve-3d;
-    transition: all 0.1s linear;
+    transition: all 0.1s ease-out;
     transform: rotateX(calc(0.001deg + var(--y))) 
                rotateY(calc(0.001deg + var(--x))) 
                translateZ(0);
