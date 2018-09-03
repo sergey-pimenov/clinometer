@@ -1,4 +1,4 @@
-var cacheName = 'app_serviceworker_v_3';
+var cacheName = 'app_serviceworker_v_4';
 
 var cacheUrls = [
   '/',
@@ -12,6 +12,7 @@ var cacheUrls = [
   '/static/iosActions.svg',
   '/static/love.svg',
   '/static/offline.svg',
+  '/static/addToHome.svg',
   '/static/robotomono-regular.woff2',
   '/static/icons/icon-512x512.png',
   '/static/icons/icon-128x128.png',
