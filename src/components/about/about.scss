@@ -72,12 +72,6 @@
     margin-right: 7px;
   }
 
-  .githubIcon {
-    width: 18px;
-    height: auto;
-    margin-right: 7px;
-  }
-
   .heartIcon {
     width: 18px;
     margin: 0 7px;
@@ -88,5 +82,17 @@
     100% {
       transform: scale(0.9);
     }
+  }
+
+  .sourceCode {
+    display: flex;
+    align-items: center;
+  }
+
+  .githubIcon {
+    width: 18px;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
   }
 }
